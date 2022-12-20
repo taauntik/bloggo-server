@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import userRoutes from './routes/users.js';
+import blogRoutes from './routes/blogs.js';
 
 dotenv.config();
 const PORT = 5000 || process.env.PORT;
@@ -20,7 +21,8 @@ app.get('/', (req, res) => {
 })
 
 // Routing setup
-app.use('/user', userRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/blog', blogRoutes);
 
 // database connection
 mongoose.set('strictQuery', false);
