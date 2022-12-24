@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import express from 'express';
+import express, { application } from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -12,8 +12,10 @@ const PORT = 5000 || process.env.PORT;
 const dbURL = process.env.DB_CONNECTION_STRING || 'mongodb://localhost:27017/blogsDB';
 const app = express();
 
-app.use(bodyParser.json());
-app.use(cors())
+// middlewares
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
 // Welcome route
 app.get('/', (req, res) => {
