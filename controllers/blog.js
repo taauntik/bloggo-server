@@ -1,6 +1,17 @@
 import Blog from "../models/blog.js";
 
-const getAllBlogs = async (req, res) => {}
+const getAllBlogs = async (req, res) => {
+    try {
+        const blogs = await Blog.find({});
+        res.status(200).json({
+            blogs
+        })
+    } catch (error) {
+        res.status(500).json({
+            message : 'Something went wrong!'
+        })
+    }
+}
 
 const createBlog = async (req, res) => {
     const { id } = req.user;
